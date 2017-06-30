@@ -4,9 +4,9 @@ output "ami_id" {
 output "public_ip" {
   value = "${aws_instance.puppetserver.public_ip}"
 }
-output "private_dns"{
+output "private_dns" {
   value = "${aws_instance.puppetserver.private_dns}"
 }
 output "private_ip" {
-  value = "${aws_instance.puppetserver,private_ip}"
+  value = "${aws_instance.puppetserver.private_ip}"
 }
