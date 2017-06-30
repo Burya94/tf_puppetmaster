@@ -1,6 +1,5 @@
 #!/bin/bash -v
 timedatectl set-timezone Europe/Kiev
-hostnamectl set-hostname puppet
 rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 yum update -y
 yum -y install puppetserver
