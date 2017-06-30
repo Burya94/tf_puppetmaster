@@ -1,9 +1,3 @@
-provider "aws" {
-    access_key = "${var.access_key}"
-    secret_key = "${var.secret_key}"
-    region     = "${var.region}"
-}
-
 data "aws_ami" "centos7"{
   most_recent = true
 
@@ -19,10 +13,13 @@ data "aws_ami" "centos7"{
 }
 
 resource "aws_instance" "puppetserver" {
-  key_name      = "${var.key_name}"
-  ami           = "${data.aws_ami.centos7.id}"
-  instance_type = "${var.instype}"
-  user_data     = "${file("./puppet.sh")}"
+  count             = 1
+  key_name          = "${var.key_name}"
+  ami               = "${data.aws_ami.centos7.id}"
+  instance_type     = "${var.instype}"
+  user_data         = "${file("${path_to_file}")}"
+  availability_zone = "${var.avzone}"
+  subnet_id         = "${var.subnet_id}"
 
   tags {
     Name = "Puppet Master"

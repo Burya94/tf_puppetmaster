@@ -1,6 +1,12 @@
 output "ami_id" {
   value = "${data.aws_ami.centos7.id}"
 }
-output "aws_ip" {
+output "public_ip" {
   value = "${aws_instance.puppetserver.public_ip}"
+}
+output "private_dns"{
+  value = "${aws_instance.puppetserver.private_dns}"
+}
+output "private_ip" {
+  value = "${aws_instance.puppetserver,private_ip}"
 }
