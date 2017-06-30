@@ -8,11 +8,11 @@ echo "autosign = true" >> /etc/puppetlabs/puppet/puppet.conf
 sed -i '9s/.*/JAVA_ARGS="-Xms512m -Xmx512m"/' "/etc/sysconfig/puppetserver"
 systemctl start puppetserver
 systemctl enable puppetserver
-cat >> /etc/hosts <<EOF 172.16.34.4   slave1
-      172.16.34.5   slave2
+cat >> /etc/hosts << EOF "172.16.34.4   slave1
+      172.16.34.5   slave2"
       EOF
 
-cat >/etc/puppetlabs/code/environments/production/manifests/site.pp <<EOF "package { 'ntp' :
+cat >/etc/puppetlabs/code/environments/production/manifests/site.pp << EOF "package { 'ntp' :
         ensure => installed,
         }
 case $::osfamily{
