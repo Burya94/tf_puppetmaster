@@ -12,7 +12,7 @@ yum install ruby -y
 /opt/puppetlabs/puppet/bin/gem install r10k
 mkdir -p /etc/puppetlabs/r10k
 
-sed -i -e 's/"nodes/%{::trusted.certname}"/"%{::osfamily}"/' '/etc/puppetlabs/puppet/hiera.yaml'
+sed -i -e 's/"nodes\/%{::trusted.certname}"/"%{::osfamily}"/' '/etc/puppetlabs/puppet/hiera.yaml'
 
 cat > /etc/puppetlabs/r10k/r10k.yaml << EOF
 cachedir: '/var/cache/r10k'
