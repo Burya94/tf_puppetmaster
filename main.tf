@@ -19,7 +19,7 @@ resource "aws_instance" "puppetserver" {
   instance_type               = "${var.instype}"
   user_data                   = "${file("${path.module}/${var.path_to_file}")}"
   subnet_id                   = "${var.subnet_id}"
-  associate_public_ip_address = "${var.pub_ip}"
+  associate_public_ip_address = true
 
   tags {
     Name = "Puppet Master"
