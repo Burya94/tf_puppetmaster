@@ -27,11 +27,10 @@ chown -R puppet:puppet /etc/puppetlabs/puppet/eyaml
 chmod -R 0500 /etc/puppetlabs/puppet/eyaml
 chmod 0400 /etc/puppetlabs/puppet/eyaml/*.pem
 cd /etc/puppetlabs/code/environments/dev/ && /opt/puppetlabs/puppet/bin/r10k puppetfile install
-#/opt/puppetlabs/bin/puppetserver gem install hiera-eyaml
- free && sync && echo 3 > /proc/sys/vm/drop_caches && free
+free && sync && echo 3 > /proc/sys/vm/drop_caches && free
 systemctl start puppet
 systemctl start puppetserver
-sudo systemctl enable puppetserver
+systemctl enable puppetserver
 #puppetserver gem install hiera-eyaml - need to be run from cli then restart puppetserver
 #/opt/puppetlabs/puppet/bin/eyaml encrypt
 #  --pkcs7-private-key=/etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem \

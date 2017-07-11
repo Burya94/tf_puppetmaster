@@ -25,6 +25,19 @@ resource "aws_instance" "puppetserver" {
   subnet_id                   = "${var.subnet_id}"
   associate_public_ip_address = true
 
+  provisioner "puppet_config" {
+   source      = "${path.module}/${var.path_to_file}"
+   destination = "/tmp/puppet_config.sh"
+ }
+
+ provisioner "local-exec" {
+   inline = [
+     "chmod +x /tmp/puppet_config.sh",
+     "sudo /tmp/puppet_config.sh ",
+   ]
+ }
+
+
   tags {
     Name = "Puppet Master"
   }
