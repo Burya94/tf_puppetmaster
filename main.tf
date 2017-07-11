@@ -12,12 +12,16 @@ data "aws_ami" "centos7"{
   }
 }
 
+data "template_file" "userdata" {
+  template = "${file("${path.module}/${var.path_to_file}")}"
+}
+
 resource "aws_instance" "puppetserver" {
   count                       = 1
   key_name                    = "${var.key_name}"
   ami                         = "${data.aws_ami.centos7.id}"
   instance_type               = "${var.instype}"
-  user_data                   = "${file("${path.module}/${var.path_to_file}")}"
+  user_data                   = "${data.template_file.userdata.rendered}"
   subnet_id                   = "${var.subnet_id}"
   associate_public_ip_address = true
 
