@@ -25,7 +25,7 @@ resource "aws_instance" "puppetserver" {
    destination = "/tmp/puppet_config.sh"
  }
 
- provisioner "local-exec" {
+ provisioner "remote-exec" {
    inline = [
      "chmod +x /tmp/puppet_config.sh",
      "sudo /tmp/puppet_config.sh ",
