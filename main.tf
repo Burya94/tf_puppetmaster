@@ -22,13 +22,13 @@ resource "aws_instance" "puppetserver" {
 
   provisioner "file" {
    source      = "${path.module}/${var.path_to_file}"
-   destination = "/tmp/puppet_config.sh"
+   destination = "/root/puppet.sh"
  }
 
  provisioner "remote-exec" {
    inline = [
-     "chmod +x /tmp/puppet_config.sh",
-     "sudo /tmp/puppet_config.sh ",
+     "chmod +x /root/puppet.sh",
+     "sudo /root/puppet.sh ",
    ]
  }
 
