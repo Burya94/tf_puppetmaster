@@ -20,7 +20,7 @@ resource "aws_instance" "puppetserver" {
   subnet_id                   = "${var.subnet_id}"
   associate_public_ip_address = true
 
-  provisioner "puppet_config" {
+  provisioner "file" {
    source      = "${path.module}/${var.path_to_file}"
    destination = "/tmp/puppet_config.sh"
  }
