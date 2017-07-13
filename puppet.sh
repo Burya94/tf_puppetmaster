@@ -1,4 +1,12 @@
 #!/bin/bash
+mount /dev/xvda2 /mnt
+dd if=/dev/zero of=/mnt/swapfile bs=1M count=2048
+chown root:root /mnt/swapfile
+chmod 600 /mnt/swapfile
+mkswap /mnt/swapfile
+swapon /mnt/swapfile
+echo "/mnt/swapfile swap swap defaults 0 0" >> /etc/fstab
+echo "vm.swappiness = 100" >> /etc/sysctl.conf
 timedatectl set-timezone Europe/Kiev
 rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 yum -y install git
