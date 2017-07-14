@@ -7,6 +7,7 @@ mkswap /mnt/swapfile
 swapon /mnt/swapfile
 echo "/mnt/swapfile swap swap defaults 0 0" >> /etc/fstab
 echo "vm.swappiness = 100" >> /etc/sysctl.conf
+sysctl -p
 timedatectl set-timezone Europe/Kiev
 rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 yum -y install git
