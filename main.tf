@@ -22,9 +22,8 @@ resource "aws_instance" "puppetserver" {
   ami                         = "${data.aws_ami.centos7.id}"
   instance_type               = "${var.instype}"
   user_data                   = "${data.template_file.userdata.rendered}"
-  subnet_id                   = "${var.subnet_id}"
-  associate_public_ip_address = true
-  
+  subnet_id                   = "${element(var.subnet_id, count.index)}"
+
   tags {
     Name = "Puppet Master"
   }
