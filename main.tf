@@ -23,6 +23,7 @@ resource "aws_instance" "puppetserver" {
   instance_type               = "${var.instype}"
   user_data                   = "${data.template_file.userdata.rendered}"
   subnet_id                   = "${element(var.subnet_id, count.index)}"
+  private_ip                  = "${var.vpc_netprefix}.${var.priv_sn_netnumber}0.${var.puppet_addr}"
   security_groups             = ["${aws_security_group.puppetserver.id}"]
   depends_on                  = ["aws_security_group.puppetserver"]
 
