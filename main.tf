@@ -23,7 +23,7 @@ resource "aws_instance" "puppetserver" {
   instance_type               = "${var.instype}"
   user_data                   = "${data.template_file.userdata.rendered}"
   subnet_id                   = "${element(var.subnet_id, count.index)}"
-  security_groups             = ["${aws_security_group.puppetserver}"]
+  security_groups             = ["${aws_security_group.puppetserver.id}"]
   depends_on                  = ["aws_security_group.puppetserver"]
 
   tags {
