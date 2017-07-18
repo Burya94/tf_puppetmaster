@@ -28,3 +28,29 @@ resource "aws_instance" "puppetserver" {
     Name = "Puppet Master"
   }
 }
+
+resource "aws_security_group" "puppetserver" {
+    vpc_id = "${var.vpc_id}"
+    description = "Allow egress and ssh/puppet traffic"
+
+    ingress {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      cidr_blocks = ["${var.pub_net}"]
+    }
+
+    ingress {
+      from_port   = 8140
+      to_port     = 8140
+      protocol    = "tcp"
+      cidr_blocks = ["${var.pub_net}"]
+    }
+
+    egress {
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+}
