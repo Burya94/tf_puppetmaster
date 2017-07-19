@@ -10,3 +10,6 @@ output "private_dns" {
 output "private_ip" {
   value = "${aws_instance.puppetserver.private_ip}"
 }
+output "sec_group" {
+  value = "${aws_security_group.puppetserver.id}"
+}
