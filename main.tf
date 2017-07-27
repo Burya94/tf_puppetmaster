@@ -57,23 +57,12 @@ resource "aws_security_group" "puppetserver" {
       cidr_blocks = ["0.0.0.0/0"]
     }
     ingress {
-      from_port   = 2181
-      to_port     = 2181
-      protocol    = "tcp"
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
       cidr_blocks = ["${var.vpc_netprefix}.${var.priv_sn_netnumber}0.0/${var.priv_sn_netmask}"]
     }
-    ingress {
-      from_port   = 3888
-      to_port     = 3888
-      protocol    = "tcp"
-      cidr_blocks = ["${var.vpc_netprefix}.${var.priv_sn_netnumber}0.0/${var.priv_sn_netmask}"]
-    }
-    ingress {
-      from_port   = 2888
-      to_port     = 2888
-      protocol    = "tcp"
-      cidr_blocks = ["${var.vpc_netprefix}.${var.priv_sn_netnumber}0.0/${var.priv_sn_netmask}"]
-    }
+
     ingress {
       from_port   = 80
       to_port     = 80
@@ -86,10 +75,5 @@ resource "aws_security_group" "puppetserver" {
       protocol    = "tcp"
       cidr_blocks = ["${var.pub_net}"]
     }
-    ingress {
-      from_port   = 8080
-      to_port     = 8080
-      protocol    = "tcp"
-      cidr_blocks = ["${var.vpc_netprefix}.${var.priv_sn_netnumber}0.0/${var.priv_sn_netmask}"]
-    }
+    
 }
