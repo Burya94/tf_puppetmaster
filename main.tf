@@ -78,11 +78,17 @@ resource "aws_security_group" "puppetserver" {
       from_port   = 80
       to_port     = 80
       protocol    = "tcp"
-      cidr_blocks = ["${var.vpc_netprefix}.${var.priv_sn_netnumber}0.0/${var.priv_sn_netmask}"]
+      cidr_blocks = ["${var.pub_net}"]
     }
     ingress {
       from_port   = 443
       to_port     = 443
+      protocol    = "tcp"
+      cidr_blocks = ["${var.pub_net}"]
+    }
+    ingress {
+      from_port   = 8080
+      to_port     = 8080
       protocol    = "tcp"
       cidr_blocks = ["${var.vpc_netprefix}.${var.priv_sn_netnumber}0.0/${var.priv_sn_netmask}"]
     }
