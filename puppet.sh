@@ -24,7 +24,6 @@ sources:
   basedir: '/etc/puppetlabs/code/environments'
 EOF
 
-mv -f /etc/puppetlabs/code/environments/dev/hiera.yaml /etc/puppetlabs/puppet/hiera.yaml
 sed -i -e 's/JAVA_ARGS="-Xms2g -Xmx2g -XX:MaxPermSize=256m"/JAVA_ARGS="-Xms512m -Xmx512m"/' "/etc/sysconfig/puppetserver"
 #----------------------------------
 systemctl start puppet
@@ -33,8 +32,8 @@ systemctl start puppetserver
 systemctl enable puppetserver
 systemctl stop puppet
 #-----------------------------------
-/opt/puppetlabs/puppet/bin/r10k deploy environment -p
-
+/opt/puppetlabs/puppet/bin/r10k deploy environment
+mv -f /etc/puppetlabs/code/environments/dev/hiera.yaml /etc/puppetlabs/puppet/hiera.yaml
 #------------------------------------------------------
 
 #Also, the memory requirements will vary based on how many Puppet modules you have in your module path, how much Hiera data you have, etc.
